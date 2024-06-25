@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($fields, $request->remember)) {
             $request->session()->regenerate();
-            return redirect('/');
+            return redirect('/')->with('success', 'Welcome back, ' . Auth::user()->name);
         }
 
         return back()->withErrors([
@@ -51,6 +51,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/')->with('warning', 'You are logged out.');
     }
 }
