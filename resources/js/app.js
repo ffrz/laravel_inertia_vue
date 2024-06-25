@@ -1,8 +1,9 @@
-import './bootstrap';
-import '../css/app.css';
+import './bootstrap'
+import '../css/app.css'
 import { createApp, h } from 'vue'
 import { Head, Link, createInertiaApp } from '@inertiajs/vue3'
-import Layout from './Layouts/Layout.vue';
+import Layout from './Layouts/Layout.vue'
+import { ZiggyVue } from '../../vendor/tightenco/ziggy'
 
 createInertiaApp({
     title: (title) => (title && title.length ? `My App ${title}` : 'My App'),
@@ -15,6 +16,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(ZiggyVue)
             .component('Head', Head)
             .component('Link', Link)
             .mount(el)
